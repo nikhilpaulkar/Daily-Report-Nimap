@@ -1,18 +1,23 @@
 package Nikhil;
 
- class Encap {
+ class Encap 
+ {
  private String name;
  private int id;
-public String getName() {
+public String getName() 
+{
 	return name;
 }
-public void setName(String name) {
+public void setName(String name) 
+{
 	this.name = name;
 }
-public int getId() {
+public int getId() 
+{
 	return id;
 }
-public void setId(int id) {
+public void setId(int id) 
+{
 	this.id = id;
 }
  public  class Test

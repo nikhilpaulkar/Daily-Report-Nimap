@@ -1,9 +1,11 @@
 package Nikhil;
 
-public class Try {
+public class Try 
+{
 	public static void main(String args[])
 	{
-	 try{
+	 try
+	 {
 		 
 		 int a= 4/0;
 	 }
@@ -12,5 +14,5 @@ public class Try {
 		 System.out.println(a);
 	 }
 
-}
+   }
 }
