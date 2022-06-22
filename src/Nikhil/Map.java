@@ -14,8 +14,12 @@ public class Map
         for(Entry<Integer,String> m:map.entrySet())
 		{
 			System.out.println(m.getKey()+ "," +m.getValue());
+			
 		} 
 	
 	}
 }
+
+
+
 

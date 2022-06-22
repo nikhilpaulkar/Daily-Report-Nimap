@@ -11,6 +11,6 @@ public static void main(String args[])
 		b=c;
 		c=a+b;
 	}
-	System.out.println(c);
+	System.out.println(a);
  }
 }
