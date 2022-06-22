@@ -1,4 +1,4 @@
-package encapsulation;
+package polymorphism;
 
 public class MethodOverlod {
 	private static void m1(int a)

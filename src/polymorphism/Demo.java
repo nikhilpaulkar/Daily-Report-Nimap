@@ -1,4 +1,4 @@
-package encapsulation;
+package polymorphism;
 
 public class Demo extends MethodOveridining
 {
