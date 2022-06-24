@@ -1,6 +1,6 @@
 package accessModifier;
 
-public class Sun 
+public class Public 
 {
  public int a=34;
  public void m1()

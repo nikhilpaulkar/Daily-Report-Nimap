@@ -1,6 +1,6 @@
 package accessModifier;
 
-public class Access 
+public class Private 
 {
 	private int a=5;
 	private void m1()
@@ -13,7 +13,7 @@ public class Access
 	{
 		public static void main(String args[])
 		{
-			Access a1=new Access();
+			Private a1=new Private();
 			System.out.println(a1.a);
 			a1.m1();
 		}

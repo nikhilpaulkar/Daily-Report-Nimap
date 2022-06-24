@@ -1,10 +1,10 @@
 package accessModifier;
 
- class My extends Prot
+ class MyProt extends Prot
 {
  public static void main(String args[])
  {
- My p=new My();
+ MyProt p=new MyProt();
  System.out.println(p.a);
  p.msg();
  
