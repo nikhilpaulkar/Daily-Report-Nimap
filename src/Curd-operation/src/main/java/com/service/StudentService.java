@@ -24,4 +24,17 @@ public class StudentService
 	{
 		return sturepository.save(student);
 	}
+	public void updateStudent(String id, Student student)
+	{
+		sturepository.save(student);
+	}
+	public void deleteStudent(Integer id)
+	{
+		sturepository.deleteById(id);
+	}
+	public void deleteStudent()
+	{
+		sturepository.deleteAll();
+	}
+	
 }
