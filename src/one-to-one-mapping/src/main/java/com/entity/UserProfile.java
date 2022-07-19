@@ -22,35 +22,31 @@ public class UserProfile
 	{
 		
 	}
+	
 	public int getUserid() {
 		return userid;
 	}
-	public void setUserid(int userid) {
+    public void setUserid(int userid) {
 		this.userid = userid;
 	}
-	public String getAddress() {
+    public String getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
+     public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getPhoneno() {
+    public String getPhoneno() {
 		return phoneno;
 	}
-	public void setPhoneno(String phoneno) {
+    public void setPhoneno(String phoneno) {
 		this.phoneno = phoneno;
 	}
-	public UserProfile(int userid, String address, String phoneno) {
+       public UserProfile(int userid, String address, String phoneno) {
 		super();
 		this.userid = userid;
 		this.address = address;
 		this.phoneno = phoneno;
 	}
-	@Override
-	public String toString() {
-		return "UserProfile [userid=" + userid + ", address=" + address + ", phoneno=" + phoneno + "]";
-	}
-	
 	
 	
 	

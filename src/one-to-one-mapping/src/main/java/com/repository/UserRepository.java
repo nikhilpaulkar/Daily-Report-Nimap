@@ -6,10 +6,9 @@ import org.springframework.stereotype.Repository;
 import com.entity.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserRepository,Integer>
+public interface UserRepository extends JpaRepository<User,Integer>
 {
 
-	User save(User user);
 	
 }
 

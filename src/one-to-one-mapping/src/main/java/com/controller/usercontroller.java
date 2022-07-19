@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.entity.User;
@@ -21,7 +22,7 @@ public class usercontroller
 @Autowired
 private UserService userservice;
 @GetMapping("/user")
-public List<UserRepository> getUser()
+public List<User> getUser()
 {
 	return userservice.getAlldata();
 }

@@ -3,7 +3,11 @@ package com.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.entity.UserProfile;
+
 @Repository
-public interface UserProfileRepository extends JpaRepository<UserProfileRepository,Integer>{
+public interface UserProfileRepository extends JpaRepository<UserProfile,Integer>{
+
+
 
 }

@@ -8,6 +8,7 @@ public class OneToOneMappingApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OneToOneMappingApplication.class, args);
+		
 	}
 
 }
