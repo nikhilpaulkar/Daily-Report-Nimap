@@ -1,53 +1,58 @@
 
 package com.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.entity.Student;
 import com.service.StudentService;
 
 @RestController
-public class StuController 
+public class StuController
 {
   @Autowired
   private StudentService studentservice;
-  
+
   @GetMapping("/student")
-  public List<Student> getstudent()
-  {
-	 return studentservice.getAlldata();
+  public ResponseEntity<?> getAlldata(
+
+	 @RequestParam(defaultValue="")String search,
+	 @RequestParam(defaultValue="1")String pageNo,
+	 @RequestParam(defaultValue="5" )String size)
+	 {
+	 System.out.println("page1");
+	 Page<Student> student=studentservice.getAllStudent(search,pageNo,size);
+
+	 System.out.println("page2");
+	// if(student.getTotalElements()!=0)
+	// {
+		 System.out.println("page3");
+		return  new ResponseEntity<>(student.getContent(),HttpStatus.OK);
+	 //}
+	//return new ResponseEntity<>("fail",HttpStatus.BAD_REQUEST);
   }
-  @GetMapping("api/student")
-  public Iterable<student> getAll(@RequestParam(value="pageNumber",defaultValue="1",required=false)Integer pageNumber,
-		  @RequestParam(value="pageSize",defaultValue="5",required=false)Integer pagesize)
-  {
-	  return studentservice.getAlldata(pageNumber,pagesize);
-  }
-  
-  
-	@PostMapping("/studentpost")
+    @PostMapping("/student")
 	public Student addStudent(@RequestBody Student student)
 	{
-		
+
         return studentservice.addStudent(student);
 	}
-	@PutMapping("/studentput/{id}")
+	@PutMapping("/student/{id}")
 	public void updateStudent(@PathVariable String id,@RequestBody Student student)
 	{
-		studentservice.updateStudent(id,student);
+		
+		
+      this.studentservice.updateStudent(id,student);
 	}
 	@DeleteMapping("student/{id}")
 	public void deleteStudent(@PathVariable  Integer id)
@@ -59,7 +64,7 @@ public class StuController
 	{
 		studentservice.deleteStudent();
 	}
-	
+
 	}
-	
+
 
