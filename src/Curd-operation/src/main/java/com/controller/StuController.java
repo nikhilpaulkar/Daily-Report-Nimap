@@ -50,9 +50,7 @@ public class StuController
 	@PutMapping("/student/{id}")
 	public void updateStudent(@PathVariable String id,@RequestBody Student student)
 	{
-		
-		
-      this.studentservice.updateStudent(id,student);
+		this.studentservice.updateStudent(id,student);
 	}
 	@DeleteMapping("student/{id}")
 	public void deleteStudent(@PathVariable  Integer id)
