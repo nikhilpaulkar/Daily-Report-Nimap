@@ -1,13 +1,12 @@
 package com.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
-
 import com.entity.Student;
 import com.repository.StuRepository;
 import com.utility.Pagination;
@@ -33,6 +32,12 @@ public class StudentService
 			return sturepository.findByName(search,paging,Student.class);
 		}
 	}
+	//get  data by id
+   public Student getById(Integer id)
+   {
+	     return sturepository.findById(id).get();
+	
+   }
 	//post to add data
 	public Student  addStudent(Student student)
 	{
@@ -48,12 +53,7 @@ public class StudentService
 	{
 		sturepository.deleteById(id);
 	}
-	//delete all data
-	public void deleteStudent()
-	{
-		sturepository.deleteAll();
-	}
-
+	
 	public Page<Student> getAlldata(String search, String pageNo, String size) {
 		
 		return null;

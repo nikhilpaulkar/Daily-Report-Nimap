@@ -10,4 +10,10 @@ public class Pagination
  {
 	 return PageRequest.of(Integer.parseInt(pagenNo)- 1,Integer.parseInt(size));
  }
+
+public Pagination() {
+	super();
+	
+}
+ 
 }

@@ -1,6 +1,4 @@
-
 package com.controller;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -23,6 +21,7 @@ public class StuController
   @Autowired
   private StudentService studentservice;
 
+  //get all data 
   @GetMapping("/student")
   public ResponseEntity<?> getAlldata(
 
@@ -40,29 +39,35 @@ public class StuController
 		return  new ResponseEntity<>(student.getContent(),HttpStatus.OK);
 	 //}
 	//return new ResponseEntity<>("fail",HttpStatus.BAD_REQUEST);
-  }
+		
+	  }
+//get by id
+  @GetMapping("student/{id}")
+ public Student getByid(@PathVariable Integer id)
+ {
+	  return this.studentservice.getById(id);
+ }
+  
+  //add data
     @PostMapping("/student")
 	public Student addStudent(@RequestBody Student student)
 	{
 
         return studentservice.addStudent(student);
 	}
+    
+    // update data 
 	@PutMapping("/student/{id}")
 	public void updateStudent(@PathVariable String id,@RequestBody Student student)
 	{
 		this.studentservice.updateStudent(id,student);
 	}
+	//delete by id 
 	@DeleteMapping("student/{id}")
 	public void deleteStudent(@PathVariable  Integer id)
 	{
 		studentservice.deleteStudent(id);
 	}
-	@DeleteMapping("student")
-	public void deleteStudent(@RequestBody Student student)
-	{
-		studentservice.deleteStudent();
-	}
-
 	}
 
 

@@ -5,8 +5,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 
 @Entity
+@Where(clause="isactive=true")
+@SQLDelete(sql="UPDATE STUDENT SET isactive=false WHERE id=?")
+
 @Table(name="student")
 public class Student 
 {
