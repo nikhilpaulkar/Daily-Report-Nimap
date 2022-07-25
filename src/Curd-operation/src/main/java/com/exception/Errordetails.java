@@ -1,5 +1,4 @@
 package com.exception;
-
 import java.util.Date;
 
 public class Errordetails 
@@ -31,12 +30,5 @@ public Errordetails(Date timestamp, String message, String details) {
 	this.message = message;
 	this.details = details;
 }
-  
-
-
-
-
-
-
 }
 

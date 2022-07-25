@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.entity.Student;
+import com.exception.ResourceNotFoundException;
 import com.service.StudentService;
 
 @RestController
@@ -33,19 +34,15 @@ public class StuController
 	 Page<Student> student=studentservice.getAllStudent(search,pageNo,size);
 
 	 System.out.println("page2");
-	// if(student.getTotalElements()!=0)
-	// {
-		 System.out.println("page3");
-		return  new ResponseEntity<>(student.getContent(),HttpStatus.OK);
-	 //}
-	//return new ResponseEntity<>("fail",HttpStatus.BAD_REQUEST);
-		
+	 System.out.println("page3");
+	return  new ResponseEntity<>(student.getContent(),HttpStatus.OK);
+	
 	  }
 //get by id
   @GetMapping("student/{id}")
  public Student getByid(@PathVariable Integer id)
  {
-	  return this.studentservice.getById(id);
+  return this.studentservice.getById(id);
  }
   
   //add data
@@ -58,9 +55,9 @@ public class StuController
     
     // update data 
 	@PutMapping("/student/{id}")
-	public void updateStudent(@PathVariable String id,@RequestBody Student student)
+	public void updateStudent(@PathVariable Student id)
 	{
-		this.studentservice.updateStudent(id,student);
+		this.studentservice.addStudent(id);
 	}
 	//delete by id 
 	@DeleteMapping("student/{id}")
