@@ -16,6 +16,8 @@ import com.entity.Student;
 import com.exception.ResourceNotFoundException;
 import com.service.StudentService;
 
+import errorDetails.Message;
+
 @RestController
 public class StuController
 {
@@ -40,24 +42,28 @@ public class StuController
 	  }
 //get by id
   @GetMapping("student/{id}")
- public Student getByid(@PathVariable Integer id)
+ public ResponseEntity<?> getById(@PathVariable("id")Integer id)
  {
-  return this.studentservice.getById(id);
+	  Student student=studentservice.getById(id);
+    return new ResponseEntity<>(new Message("Success", "Success", student),HttpStatus.ACCEPTED);
  }
   
   //add data
     @PostMapping("/student")
-	public Student addStudent(@RequestBody Student student)
+	public ResponseEntity<?> addStudent(@RequestBody Student student)
 	{
 
-        return studentservice.addStudent(student);
+        Student studen1= studentservice.addStudent(student);
+        return new ResponseEntity<>(new Message("Success", "Success", studen1),HttpStatus.ACCEPTED);
 	}
-    
+   
     // update data 
 	@PutMapping("/student/{id}")
-	public void updateStudent(@PathVariable Student id)
+	public ResponseEntity<?> updateStudent(@RequestBody Student student,@PathVariable Integer id)
 	{
-		this.studentservice.addStudent(id);
+		student.setId(id);
+		Student student4=this.studentservice.updateStudent(id);
+		return new ResponseEntity<>(new Message("success","success", student4),HttpStatus.ACCEPTED);
 	}
 	//delete by id 
 	@DeleteMapping("student/{id}")

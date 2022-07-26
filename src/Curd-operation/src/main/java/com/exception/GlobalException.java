@@ -19,4 +19,5 @@ public class GlobalException
 		return new ResponseEntity<>(errordetails, HttpStatus.NOT_FOUND);
 	}
 	
+	
 }

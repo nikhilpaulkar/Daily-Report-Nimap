@@ -1,7 +1,7 @@
-package com.curddto;
+package com.demo.dto;
 
-public class Dto 
-{ 
+public class StudentDto 
+{
 	private int id;
 	private String name;
 	private String city;
@@ -23,11 +23,6 @@ public class Dto
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public Dto(int id, String name, String city) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.city = city;
-	}
 	
+
 }
