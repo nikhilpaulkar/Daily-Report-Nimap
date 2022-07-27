@@ -9,23 +9,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.entity.Student;
-import com.exception.ResourceNotFoundException;
 import com.service.StudentService;
-
 import errorDetails.Message;
 
 @RestController
+@RequestMapping("/student")
 public class StuController
 {
   @Autowired
   private StudentService studentservice;
 
   //get all data 
-  @GetMapping("/student")
+  @GetMapping()
   public ResponseEntity<?> getAlldata(
 
 	 @RequestParam(defaultValue="")String search,
@@ -37,36 +36,35 @@ public class StuController
 
 	 System.out.println("page2");
 	 System.out.println("page3");
-	return  new ResponseEntity<>(student.getContent(),HttpStatus.OK);
+	return  new ResponseEntity<>(student.getContent(),HttpStatus.ACCEPTED);
 	
 	  }
-//get by id
-  @GetMapping("student/{id}")
- public ResponseEntity<?> getById(@PathVariable("id")Integer id)
- {
+   //get by id
+     @GetMapping("/{id}")
+     public ResponseEntity<?> getById(@PathVariable("id")Integer id)
+    {
 	  Student student=studentservice.getById(id);
-    return new ResponseEntity<>(new Message("Success", "Success", student),HttpStatus.ACCEPTED);
- }
+      return new ResponseEntity<>(new Message("Success", "Success", student),HttpStatus.OK);
+    }
   
   //add data
-    @PostMapping("/student")
+    @PostMapping()
 	public ResponseEntity<?> addStudent(@RequestBody Student student)
 	{
 
         Student studen1= studentservice.addStudent(student);
-        return new ResponseEntity<>(new Message("Success", "Success", studen1),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(new Message("Success", "Success", studen1),HttpStatus.OK);
 	}
-   
-    // update data 
-	@PutMapping("/student/{id}")
-	public ResponseEntity<?> updateStudent(@RequestBody Student student,@PathVariable Integer id)
-	{
-		student.setId(id);
-		Student student4=this.studentservice.updateStudent(id);
-		return new ResponseEntity<>(new Message("success","success", student4),HttpStatus.ACCEPTED);
-	}
-	//delete by id 
-	@DeleteMapping("student/{id}")
+    //update data
+     
+    @PutMapping("{id}")
+    public void updateuser(@PathVariable String id,@RequestBody Student student)
+    {
+    	studentservice.updateuser(id, student);
+    }
+	
+ //delete by id 
+	@DeleteMapping("/{id}")
 	public void deleteStudent(@PathVariable  Integer id)
 	{
 		studentservice.deleteStudent(id);

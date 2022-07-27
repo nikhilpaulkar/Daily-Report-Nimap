@@ -1,15 +1,9 @@
 package com.service;
-
-import java.util.List;
-import java.util.Optional;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-
 import com.entity.Student;
 import com.exception.ResourceNotFoundException;
 import com.repository.StuRepository;
@@ -47,19 +41,16 @@ public class StudentService
 	//post to add data
 	public Student  addStudent(Student student)
 	{
-//		Student student1 =sturepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("resource not found"));
-	Student student1=sturepository.save(student);
+
+	    Student student1=sturepository.save(student);
 		return sturepository.save(student1);
 	}
-	//update data 
-	public Student  updateStudent(Integer id)
+	//update by id 
+	public void updateuser(String id,Student student)
 	{
-		Student student1=sturepository.findById(id).orElseThrow(() -> new  ResourceNotFoundException("user not found with id "));
-		
-		return sturepository.save(student1);
-		
+		  sturepository.findById(Integer.parseInt(id)).orElseThrow(() -> new ResourceNotFoundException("resource not found"));
+		 sturepository.save(student);
 	}
-	
 	//delete by id
 	public void deleteStudent(Integer id)
 	{
