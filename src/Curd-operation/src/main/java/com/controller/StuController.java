@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+
 import com.entity.Student;
 import com.service.StudentService;
 import errorDetails.Message;
@@ -55,7 +57,8 @@ public class StuController
         Student studen1= studentservice.addStudent(student);
         return new ResponseEntity<>(new Message("Success", "Success", studen1),HttpStatus.OK);
 	}
-    //update data
+    
+     //update data
      
     @PutMapping("{id}")
     public void updateuser(@PathVariable String id,@RequestBody Student student)

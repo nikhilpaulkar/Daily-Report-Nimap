@@ -14,8 +14,6 @@ public class StudentService
 {
 	@Autowired
 	private StuRepository sturepository;
-	@Autowired
-	private ModelMapper modelMapper;
 	
 	//get all data
 	public Page<Student> getAllStudent(String search,String from,String to)
@@ -62,15 +60,15 @@ public class StudentService
 		
 		return null;
 	}
-	//dto to student 
-	public Student dtoToStudent(com.demo.dto.StudentDto studentdto)
-	{
-		return this.modelMapper.map(studentdto, Student.class);
-	}
-	//student to dto
-	public com.demo.dto.StudentDto studentoDto(Student student)
-	{
-		return this.modelMapper.map(student, com.demo.dto.StudentDto.class);
-	}
-	
+//	//dto to student 
+//	public Student dtoToStudent(com.demo.dto.StudentDto studentdto)
+//	{
+//		return this.modelMapper.map(studentdto, Student.class);
+//	}
+//	//student to dto
+//	public com.demo.dto.StudentDto studentoDto(Student student)
+//	{
+//		return this.modelMapper.map(student, com.demo.dto.StudentDto.class);
+//	}
+//	
 }
