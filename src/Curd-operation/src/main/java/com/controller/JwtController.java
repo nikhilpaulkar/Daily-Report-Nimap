@@ -1,41 +1,41 @@
 package com.controller;
 
-//import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.webSecurity.JwtRequest;
-import com.webSecurity.JwtResponse;
+import com.entity.User;
+import com.service.UserService;
+import com.webSecurity.JwtAuthRequest;
+import com.webSecurity.JwtAuthResponse;
+import com.webSecurity.JwtTokenHelper;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+@RestController
 
 public class JwtController
 {
+	@Autowired
+	private JwtTokenHelper jwttokenfilter; 
+	@Autowired 
+	private UserService userservice;
 	
-@GetMapping("/")
-public String home()
+	//get all data
+@GetMapping("/user")
+public List<User> getuser ()
 {
-	return "welcome to Nimap ";
+	return userservice.getAlldata();
+}
+  //add data 
+@PostMapping("/user")
+public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest jwtauthrequest)
+{
+	this.
+}
+	
 }
 
-//add data the data 
-@PostMapping("/autheticate")
-public JwtResponse authenticate(@RequestBody JwtRequest jwtrequest)throws Exception
-{
-	try {
- 
-		  new UsernamePasswordAuthenticationToken(
-		  jwtrequest.getUsername(),
-		   jwtrequest.getPassword()
-		   )
-		  ;
-	} catch(BadCredentialsException e) {
-	  throw new Exception("invalid credresentials",e);
-  }
-	return null;
-	
-	
-}
-}

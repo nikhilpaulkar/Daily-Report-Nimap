@@ -1,25 +1,30 @@
 package com.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-//@Service
-//public class UserService implements UserDetailsService
-//{
+import com.entity.User;
 
-//	@Override
-	//public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		//get user from database
-		
-		//String password;
-		//return new User(username: "username", password:"password",new ArrayList<>() );
-	///}
+import com.repository.UserRepository;
 
-//}
+@Service
+public class UserService 
+{
+	@Autowired
+	private UserRepository userrepository;
+	//get all data 
+	public List<User> getAlldata()
+	{
+		return userrepository.findAll();
+	}
+	
+	//add data 
+	public User adduser(User user)
+	{
+		return userrepository.save(user);
+	}
+
+}

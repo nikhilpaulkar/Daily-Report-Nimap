@@ -12,7 +12,6 @@ import org.hibernate.annotations.Where;
 @Entity
 @Where(clause="isactive=true")
 @SQLDelete(sql="UPDATE STUDENT SET isactive=false WHERE id=?")
-
 @Table(name="student")
 public class Student 
 {
@@ -47,20 +46,19 @@ public String getCity() {
 public void setCity(String city) {
 	this.city = city;
 }
+
 public Student() {
 	super();
 	
 }
+
 public Student(int id, String name, String city, Boolean isactive) {
 	super();
 	this.id = id;
 	this.name = name;
 	this.city = city;
-	this.isactive = isactive;
+   this.isactive = isactive;
 }
-
-
-
 }
 
 
