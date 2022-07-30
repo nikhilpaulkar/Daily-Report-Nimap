@@ -15,10 +15,9 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
-public class Security extends WebSecurityConfigurerAdapter
+public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
-	@Autowired
-	private AuthenticationUserDetailsService customuserdetailsservice;
+	
 	@Autowired
 	private JwtAutheticationEntryPoint jwtautheticationentrypoint;
 	@Autowired
@@ -36,24 +35,21 @@ public PasswordEncoder passwordencoder()
 }
 @Override
 @Bean
-public AuthenticationManager authenticationManagerBean() throws Exception {
-	
+public AuthenticationManager authenticationManagerBean() throws Exception
+{
 	return super.authenticationManagerBean();
 }
 @Override
 protected void configure(HttpSecurity http) throws Exception
 {
-	 http.csrf()
-	.disable()
-	.authorizeHttpRequests()
-	.anyRequest()
-	.authenticated()
-	.and()
-	.exceptionHandling()
-	.authenticationEntryPoint(this.jwtautheticationentrypoint);
+	http
+    .csrf().disable()
+    .authorizeRequests()
+    .antMatchers("/admin/**").hasRole("ADMIN")
+    .antMatchers("/anonymous*").anonymous()
+    .antMatchers("/login*").permitAll()
+    .anyRequest().authenticated()
+    .and();
 }
-
-
 }
-
 

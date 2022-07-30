@@ -1,27 +1,28 @@
 package com.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.entity.User;
 import com.service.UserService;
-import com.webSecurity.JwtAuthRequest;
-import com.webSecurity.JwtAuthResponse;
-import com.webSecurity.JwtTokenHelper;
+
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+
 @RestController
 
-public class JwtController
+public class UserController
 {
-	@Autowired
-	private JwtTokenHelper jwttokenfilter; 
-	@Autowired 
+
+	
+	@Autowired 	
 	private UserService userservice;
 	
 	//get all data
@@ -32,10 +33,17 @@ public List<User> getuser ()
 }
   //add data 
 @PostMapping("/user")
-public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest jwtauthrequest)
+public void adddata(@RequestBody User user)
 {
-	this.
+	userservice.adduser(user);
 }
-	
+
+//update data
+@PutMapping("/user{id}")
+public void  updatedat(@PathVariable Integer Id,@RequestBody User user)
+{
+	userservice.updatedata(Id, user);
+}
+
 }
 

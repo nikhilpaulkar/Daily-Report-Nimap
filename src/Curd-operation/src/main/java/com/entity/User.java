@@ -15,6 +15,7 @@ public class User
 private int id;
 private String email;
 private String password;
+private String name;
 public int getId() {
 	return id;
 }
@@ -33,11 +34,20 @@ public String getPassword() {
 public void setPassword(String password) {
 	this.password = password;
 }
-public User(int id, String email, String password) {
+public String getName(String name)
+{
+	return name;
+}
+public void setName(String name)
+{
+	this.name=name;
+}
+public User(int id, String email, String password,String name) {
 	super();
 	this.id = id;
 	this.email = email;
 	this.password = password;
+	this.name=name;
 }
 public User() {
 	super();
