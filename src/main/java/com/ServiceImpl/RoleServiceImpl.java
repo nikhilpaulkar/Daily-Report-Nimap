@@ -1,21 +1,15 @@
 package com.ServiceImpl;
-
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
 import org.springframework.stereotype.Service;
-
 import com.dto.RoleDto;
-
 import com.entity.RoleEntity;
-import com.entity.User;
 import com.exception.ResourceNotFoundException;
 import com.repository.RoleRepository;
 import com.service.RoleServiceInterface;
-import com.utility.Pagination;
+
 @Service
 public class RoleServiceImpl  implements RoleServiceInterface
 {
@@ -28,7 +22,7 @@ public class RoleServiceImpl  implements RoleServiceInterface
 	public RoleEntity addrole(RoleDto roledto)
 	{
 		RoleEntity roleentity=new RoleEntity();
-		roleentity.setRolename(roledto.getroleName());
+		roleentity.setRoleName(roledto.getroleName());
 		return rolerepository.save(roleentity);
 	}
 	
@@ -37,8 +31,8 @@ public class RoleServiceImpl  implements RoleServiceInterface
 	//get by id 
 	  public RoleEntity getbyid (Integer id)
 	   {
-		return this.rolerepository.findById(id).get();
-		}
+		 return this.rolerepository.findById(id).get();
+	   }
 	
 
     // get all roles 
@@ -58,28 +52,25 @@ public class RoleServiceImpl  implements RoleServiceInterface
         }
 
 
-   
+  // update by id
+      @Override
+     public  RoleEntity update(RoleEntity roleentity, Integer id)
+    {
+	  try
+	  {
+         RoleEntity role= rolerepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("nOT fOUND"));
+		 role.setRoleName(roleentity.getRoleName());
+         RoleEntity role1= this.rolerepository.save(role);
+		 return role1;
+	  }
+	  catch(Exception e)
+	  {
+		  throw new ResourceNotFoundException("Not Found Id");
+	  }
 
-  // update data by id 
-   @Override
-  public RoleEntity save(Integer id) 
-  {
-	return rolerepository.save(id);
   }
 
 
+   
 
-	
-
-
-
-
-
-
-		
-
-
-		
-
-
-	}
+}

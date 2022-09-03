@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.dto.UserDto;
 import com.entity.User;
 import com.exception.ResourceNotFoundException;
 import com.repository.UserRepository;
@@ -54,12 +55,6 @@ public class UserService
 
 
 
-//	public static void logoutUser(String token, int id, String email)
-//	{
-//
-//	}
-
-
 
     //login method find by email
    public    User findByEmail(String email)
@@ -72,7 +67,7 @@ public class UserService
 
 
 	//password encoder
-	public User createUser(User userdto)
+	public User createUser(UserDto userdto)
 	{
 		User user1= new User();
 		user1.setEmail(userdto.getEmail());
@@ -82,16 +77,18 @@ public class UserService
 
 	}
 
-
-
-
-
-
-	public UserDetails loadUserByUsername(String email) {
+	public UserDetails loadUserByUsername(String email)
+	{
+		
 		return null;
-
-
 	}
+
+
+
+
+
+
+	
 
 
 

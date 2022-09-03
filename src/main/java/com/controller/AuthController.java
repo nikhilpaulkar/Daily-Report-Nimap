@@ -18,6 +18,7 @@ import com.ServiceImpl.AuthServiceImpl;
 import com.ServiceImpl.LoggerServiceInterface;
 import com.dto.ErrorResponseDto;
 import com.dto.LoggerDto;
+import com.dto.UserDto;
 import com.entity.User;
 import com.service.UserService;
 import com.webSecurity.JwtAuthRequest;
@@ -47,8 +48,7 @@ public class AuthController {
 
 			User user1 = userservice.findByEmail(authenticationRequest.getEmail());
 			System.out.println(user1.getPassword());
-			if (authServiceImpl.comaparePassword(user1.getPassword(), authenticationRequest.getPassword()))
-				;
+			if (authServiceImpl.comaparePassword(user1.getPassword(), authenticationRequest.getPassword()));
 			{
 				System.out.println("Data" + user1.getEmail());
 				final String token = jwttokenutil.generateToken(user1);
@@ -73,7 +73,7 @@ public class AuthController {
 	// register api
    @PostMapping("/register")
 	
-	public ResponseEntity<?> createUser(@RequestBody User userdto) throws Exception {
+	public ResponseEntity<?> createUser(@RequestBody UserDto userdto) throws Exception {
 
 		try {
 			

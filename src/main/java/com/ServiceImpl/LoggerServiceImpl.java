@@ -29,11 +29,7 @@ public class LoggerServiceImpl implements LoggerServiceInterface
 
 
   	}
-	@Override
-	public void logout(String token) {
-
-
-	}
+	
 
 
 }

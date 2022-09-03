@@ -15,35 +15,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.ServiceImpl.RoleServiceImpl;
 import com.dto.RoleDto;
 import com.dto.SuccessResponseDto;
 import com.entity.RoleEntity;
-
+import com.exception.Errordetails;
 import com.exception.ResourceNotFoundException;
 
 import com.service.RoleServiceInterface;
-@RestController
-@RequestMapping("/role")
-public class RoleController 
-{
-@Autowired
-private RoleServiceInterface roleserviceinterface;
+  @RestController
+  @RequestMapping("/role")
+  public class RoleController 
+ {
+ @Autowired
+ private RoleServiceImpl roleserviceinterface;
 	
 
 
 
 @PostMapping
-public RoleEntity addrole (@RequestBody RoleDto roledto)
-{ 
+   public RoleEntity addrole (@RequestBody RoleDto roledto)
+  { 
 	return this.roleserviceinterface.addrole(roledto);
 
-}
+  }
 
 
 @GetMapping
-public ResponseEntity<?>getallroles()
-{
+  public ResponseEntity<?>getallroles()
+  {
 	List <RoleEntity> roleentity=this.roleserviceinterface.getallroles();
 	try
 	{
@@ -63,9 +63,17 @@ public ResponseEntity<?>getallroles()
   }
 
 @PutMapping("/{id}")
-  public void updateroleentity(@PathVariable Integer id)
+  public ResponseEntity<?>update(@RequestBody RoleEntity roleentity,@PathVariable("id")Integer id)
   {
-        roleserviceinterface.save(id);
+	try
+	{
+		RoleEntity role=this.roleserviceinterface.update(roleentity, id);
+		return new ResponseEntity<>(new SuccessResponseDto("Update Successfully","success",role),HttpStatus.ACCEPTED);
+	}catch(Exception e)
+	{
+		return new ResponseEntity<>(e.toString(),HttpStatus.NO_CONTENT);
+	}
+	
   }
 
 @DeleteMapping("/{id}")

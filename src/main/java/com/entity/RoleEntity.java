@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table(name="role")
 @Where(clause="isactive=true")
-@SQLDelete(sql="UPDATE  role isactive=false WHERE id=?")
+@SQLDelete(sql="UPDATE role SET isactive=false WHERE id=?")
 public class RoleEntity implements Serializable
 {
  /**
@@ -34,6 +34,7 @@ public class RoleEntity implements Serializable
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
+  
   private String roleName;
   @UpdateTimestamp
   private Date updatedat;
@@ -41,9 +42,9 @@ public class RoleEntity implements Serializable
   @CreationTimestamp
   private Date createdat;
   private boolean isactive=true;
-//  @OneToMany(fetch=FetchType.LAZY,mappedBy="task.role",cascade=CascadeType.ALL)
-//  @JsonBackReference
-//  private List<UserRoleEntity> userrole;
+  @OneToMany(fetch=FetchType.LAZY,mappedBy="task.role",cascade=CascadeType.ALL)
+  @JsonBackReference
+  private List<UserRoleEntity> userrole;
  
 public int getId() {
 	return id;
@@ -51,11 +52,11 @@ public int getId() {
 public void setId(int id) {
 	this.id = id;
 }
-public String getRolename() {
+public String getRoleName() {
 	return roleName;
 }
-public void setRolename(String rolename) {
-	this.roleName = rolename;
+public void setRoleName(String roleName) {
+	this.roleName = roleName;
 }
 public Date getUpdatedat() {
 	return updatedat;
@@ -77,28 +78,28 @@ public void setCreatedat(Date createdat) {
 	this.createdat = createdat;
 }
 
-//public List<UserRoleEntity> getUserrole() {
-//	return userrole;
-//}
-//public void setUserrole(List<UserRoleEntity> userrole) {
-//	this.userrole = userrole;
-//}
+public List<UserRoleEntity> getUserrole() {
+	return userrole;
+}
+public void setUserrole(List<UserRoleEntity> userrole) {
+	this.userrole = userrole;
+	}
 
-public RoleEntity(int id, String rolename, Date updatedat, Date createdat, boolean isactive,
+public RoleEntity(int id, String roleName, Date updatedat, Date createdat, boolean isactive,
 		List<UserRoleEntity> userrole) {
 	super();
 	this.id = id;
-	this.roleName = rolename;
+	this.roleName = roleName;
 	this.updatedat = updatedat;
 	this.createdat = createdat;
 	this.isactive = isactive;
-	//this.userrole = userrole;
+	this.userrole = userrole;
 }
 public RoleEntity() {
 	super();
 	
 }
-  
+
   
  
 	

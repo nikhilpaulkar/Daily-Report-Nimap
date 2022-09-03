@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.entity.User;
 import com.repository.AuthRepository;
+import com.service.AuthInterface;
 @Service
 public class AuthServiceImpl implements AuthInterface{
 @Autowired
@@ -26,7 +27,7 @@ private PasswordEncoder passwordencoder;
 		User user;
 		user = authrepository.findByEmail(email);
 		if (user == null)
-		{
+		{  
 		throw new UsernameNotFoundException("User not found with Email: " + email);
 		}
              return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),new ArrayList<>());
