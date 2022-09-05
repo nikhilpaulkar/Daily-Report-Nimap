@@ -5,6 +5,7 @@ public class UserRoleRequest
 
 	private int userid;
 	private int roleid;
+	
 	public int getUserid() {
 		return userid;
 	}

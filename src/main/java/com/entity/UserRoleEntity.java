@@ -29,11 +29,14 @@ public class UserRoleEntity implements Serializable
 	private static final long serialVersionUID = 1L;
    @CreationTimestamp
 	private Date createdat;
+   
    @UpdateTimestamp
 	private Date updatedat;
 	private boolean isactive=true;
 	
+	@EmbeddedId
 	private UserRoleId task= new UserRoleId();
+	
 	public Date getCreatedat() {
 		return createdat;
 	}

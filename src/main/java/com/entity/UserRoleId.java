@@ -36,11 +36,16 @@ public class UserRoleId implements java.io.Serializable
 		this.role = role;
 	}
 
-   public UserRoleId() {
-		super();
-		
-	}
-	
-	
+   
+   public UserRoleId() 
+   {
+	 
+  }
+  public UserRoleId(User user, RoleEntity role) {
+	super();
+	this.user = user;
+	this.role = role;
+}
+  
 
 }

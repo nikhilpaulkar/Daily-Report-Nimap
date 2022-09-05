@@ -76,7 +76,8 @@ public class StuController
     	}
     	catch(Exception e)
     	{
-    		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    		return new ResponseEntity<>(new Message("user not found with id","",""),HttpStatus.NOT_FOUND);
+    		
     	}
     }
 
