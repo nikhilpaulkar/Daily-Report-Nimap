@@ -18,7 +18,7 @@ import org.hibernate.annotations.Where;
 @Entity
 @Table(name="userrole")
 @Where(clause="isactive=true")
-@SQLDelete(sql="UPDATE userrole SET isactive=false WHERE id=? AND u.user_id=?")
+@SQLDelete(sql="UPDATE userrole SET isactive=false WHERE role_id=? AND user_id=?")
 @AssociationOverrides({@AssociationOverride(name="task.users",joinColumns=@JoinColumn(name="user_id")),@AssociationOverride(name="task.roles",joinColumns=@JoinColumn(name="role_id"))})
 public class UserRoleEntity implements Serializable
 {
@@ -27,22 +27,24 @@ public class UserRoleEntity implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-   @CreationTimestamp
+  
 	private Date createdat;
    
-   @UpdateTimestamp
 	private Date updatedat;
 	private boolean isactive=true;
 	
 	@EmbeddedId
 	private UserRoleId task= new UserRoleId();
 	
+	 @CreationTimestamp
 	public Date getCreatedat() {
 		return createdat;
 	}
 	public void setCreatedat(Date createdat) {
 		this.createdat = createdat;
 	}
+	   @UpdateTimestamp
+
 	public Date getUpdatedat() {
 		return updatedat;
 	}

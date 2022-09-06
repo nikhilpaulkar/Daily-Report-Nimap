@@ -8,10 +8,10 @@ public class Pagination
  public Pageable getPagination(String pageNo, String size)
 
  {
-	 return  PageRequest.of(Integer.parseInt(pageNo)- 1,Integer.parseInt(size));
+	 return  PageRequest.of(Integer.parseInt(pageNo)-1,Integer.parseInt(size));
  }
 
-public Pagination() {
+  public Pagination() {
 	super();
 
 }

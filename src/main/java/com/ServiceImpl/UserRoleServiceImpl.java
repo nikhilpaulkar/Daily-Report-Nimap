@@ -70,12 +70,33 @@ public class UserRoleServiceImpl implements UserRoleServiceInterface
 		
 		RoleEntity roleentity=this.rolerepository.findById(userrolerequest.getRoleid()).orElseThrow(()-> new ResourceNotFoundException("not found"));
 		UserRoleId userroleid = new UserRoleId(user, roleentity);
+		
 		UserRoleEntity useroleentity = new UserRoleEntity();
+		
 		useroleentity.setTask(userroleid);
-		userrolerepo.save(userroleid);
+		userrolerepo.updateuserrole(user.getId(), roleentity.getId());
+	}
+	
+	//delete by id 
+	@Override
+	public UserRoleEntity deleteuserroles (UserRoleRequest userrolerequest)
+	{
+		User user=this.userrepository.findById(userrolerequest.getUserid()).orElseThrow(()-> new ResourceNotFoundException("user not found with id"));
+		
+		RoleEntity roleentity=this.rolerepository.findById(userrolerequest.getRoleid()).orElseThrow(()-> new ResourceNotFoundException("not found"));
+		
+		UserRoleId userroleid=new UserRoleId(user,roleentity);
+		
+	    UserRoleEntity userroleentity=new UserRoleEntity();
+	    
+	    userroleentity.setTask(userroleid);
+	    
+	    userrolerepo.delete(userroleentity);
+		return userroleentity;
+	    
 	}
 
-	  // delete by id 
+	  
 	
 	  
 	

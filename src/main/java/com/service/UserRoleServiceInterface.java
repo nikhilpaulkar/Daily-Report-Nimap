@@ -11,7 +11,7 @@ public interface UserRoleServiceInterface
 	void add(UserRoleRequest userrolerequest);
     List<UserRoleEntity> getall();
     void updateuserrole (UserRoleRequest userrolerequest);
-    
+    UserRoleEntity deleteuserroles(UserRoleRequest userrolerequest);
     
     
 }
