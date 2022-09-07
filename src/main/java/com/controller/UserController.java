@@ -34,7 +34,7 @@ public ResponseEntity<?> getAlluser ()
 	List<User> user=this.userservice.getAllUsers();
 	try
 	{
-		System.out.println("hello");
+		
 
 		return new ResponseEntity<>(user,HttpStatus.OK);
 	}catch(ResourceNotFoundException e)

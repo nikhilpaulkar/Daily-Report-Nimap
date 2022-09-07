@@ -18,6 +18,8 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Where(clause = "is_active=true")
 @SQLDelete(sql="UPDATE permission SET is_active=false WHERE id=?")
@@ -48,8 +50,9 @@ public class PermissionEntity implements Serializable
 	private Date updatedAt;
     private boolean isActive=true;
 	
-//	@OneToMany(fetch = FetchType.LAZY,mappedBy = "pk.permission",cascade = CascadeType.ALL)
-//	private List<RolePermissionEntity> rolePermissionEntity;
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "pk.permission",cascade = CascadeType.ALL)
+	@JsonBackReference
+	private List<RolePermissionEntity> rolePermissionEntity;
 
 	public int getId() {
 		return id;
@@ -115,13 +118,13 @@ public class PermissionEntity implements Serializable
 		this.isActive = isActive;
 	}
 
-//	public List<RolePermissionEntity> getRolePermissionEntity() {
-//		return rolePermissionEntity;
-//	}
+	public List<RolePermissionEntity> getRolePermissionEntity() {
+		return rolePermissionEntity;
+	}
 
-//	public void setRolePermissionEntity(List<RolePermissionEntity> rolePermissionEntity) {
-//		this.rolePermissionEntity = rolePermissionEntity;
-//	}
+	public void setRolePermissionEntity(List<RolePermissionEntity> rolePermissionEntity) {
+		this.rolePermissionEntity = rolePermissionEntity;
+	}
 
 	public PermissionEntity(int id, String actionName, String method, String baseUrl, String path, Date createdAt,
 			Date updatedAt, boolean isActive, List<RolePermissionEntity> rolePermissionEntity) {
@@ -134,7 +137,7 @@ public class PermissionEntity implements Serializable
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 		this.isActive = isActive;
-		//this.rolePermissionEntity = rolePermissionEntity;
+		this.rolePermissionEntity = rolePermissionEntity;
 	}
 
 	public PermissionEntity() {
