@@ -43,7 +43,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
   private  Boolean isactive =true;
 
   @OneToMany(fetch=FetchType.LAZY,mappedBy="task.user",cascade=CascadeType.ALL)
-  @JsonBackReference
+  @JsonIgnore
   private List<UserRoleEntity> userrole;
 
 

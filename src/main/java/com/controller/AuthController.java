@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ServiceImpl.AuthServiceImpl;
 import com.ServiceImpl.LoggerServiceInterface;
+import com.dto.AuthDto;
 import com.dto.ErrorResponseDto;
 import com.dto.LoggerDto;
 import com.dto.UserDto;
 import com.entity.User;
+import com.exception.ResourceNotFoundException;
+import com.repository.UserRepository;
 import com.service.UserService;
 import com.webSecurity.JwtAuthRequest;
 import com.webSecurity.JwtAuthRespose;
@@ -32,7 +35,9 @@ public class AuthController {
 
 	@Autowired
 	private AuthServiceImpl authServiceImpl;
-
+	@Autowired
+	UserRepository userrepository;
+	
 	@Autowired
 	private UserService userservice;
 	@Autowired
@@ -61,6 +66,7 @@ public class AuthController {
 				logger.setExpiredAt(calender.getTime());
 				loggerserviceinterface.createLogger(logger, user1);
 				return new ResponseEntity<>(new JwtAuthRespose(token), HttpStatus.OK);
+				//return new ResponseEntity<>( new AuthDto token(user1.getId(),user1.getEmail(),user1.getName(),HttpStatus.OK));
 			}
 		} catch (BadCredentialsException e) {
 			throw new Exception("invalid user or password");
@@ -74,16 +80,32 @@ public class AuthController {
    @PostMapping("/register")
 	
 	public ResponseEntity<?> createUser(@RequestBody UserDto userdto) throws Exception {
-
-		try {
-			
-			return ResponseEntity.ok(this.userservice.createUser(userdto));
+      
+	   
+	 
+	  try 
+	  {
+		  User user=this.userrepository.findByEmail(userdto.getEmail());
+		  if(user !=null)
+		  {
+				return new ResponseEntity<>("user already exisits", HttpStatus.NOT_FOUND);
+		  }
+		  else 
+		  {
+			  
+		  this.userservice.createUser(userdto);
+		  return new ResponseEntity<>("Success", HttpStatus.CREATED);
+		  }
+		
 
 		} catch (Exception e) {
 
-			return new ResponseEntity<>("user already exit", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("hello", HttpStatus.OK);
 		}
+	  
+	
 
-	}
-
+	
+	
+   }
 }

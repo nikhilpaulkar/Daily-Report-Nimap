@@ -46,62 +46,68 @@ public class RoleEntity implements Serializable
   @JsonBackReference
   private List<UserRoleEntity> userrole;
  
-public int getId() {
-	return id;
-}
-public void setId(int id) {
-	this.id = id;
-}
-public String getRoleName() {
-	return roleName;
-}
-public void setRoleName(String roleName) {
-	this.roleName = roleName;
-}
-public Date getUpdatedat() {
-	return updatedat;
-}
-public void setUpdatedat(Date updatedat) {
-	this.updatedat = updatedat;
-}
-public boolean isIsactive() {
-	return isactive;
-}
-public void setIsactive(boolean isactive) {
-	this.isactive = isactive;
-}
-
-public Date getCreatedat() {
-	return createdat;
-}
-public void setCreatedat(Date createdat) {
-	this.createdat = createdat;
-}
-
-public List<UserRoleEntity> getUserrole() {
-	return userrole;
-}
-public void setUserrole(List<UserRoleEntity> userrole) {
-	this.userrole = userrole;
+	public int getId() {
+		return id;
 	}
 
-public RoleEntity(int id, String roleName, Date updatedat, Date createdat, boolean isactive,
-		List<UserRoleEntity> userrole) {
-	super();
-	this.id = id;
-	this.roleName = roleName;
-	this.updatedat = updatedat;
-	this.createdat = createdat;
-	this.isactive = isactive;
-	this.userrole = userrole;
-}
-public RoleEntity() {
-	super();
-	
-}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  
- 
-	
-	
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public Date getUpdatedat() {
+		return updatedat;
+	}
+
+	public void setUpdatedat(Date updatedat) {
+		this.updatedat = updatedat;
+	}
+
+	public boolean isIsactive() {
+		return isactive;
+	}
+
+	public void setIsactive(boolean isactive) {
+		this.isactive = isactive;
+	}
+
+	public Date getCreatedat() {
+		return createdat;
+	}
+
+	public void setCreatedat(Date createdat) {
+		this.createdat = createdat;
+	}
+
+	public List<UserRoleEntity> getUserrole() {
+		return userrole;
+	}
+
+	public void setUserrole(List<UserRoleEntity> userrole) {
+		this.userrole = userrole;
+	}
+
+	public RoleEntity(int id, String roleName, Date updatedat, Date createdat, boolean isactive,
+			List<UserRoleEntity> userrole) {
+		super();
+		this.id = id;
+		this.roleName = roleName;
+		this.updatedat = updatedat;
+		this.createdat = createdat;
+		this.isactive = isactive;
+		this.userrole = userrole;
+	}
+
+	public RoleEntity() {
+		super();
+
+	}
+
 }

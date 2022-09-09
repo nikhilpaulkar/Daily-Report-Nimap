@@ -2,6 +2,7 @@ package com.service;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +20,10 @@ public class UserService
 	private UserRepository userrepository;
 	@Autowired
 	private PasswordEncoder passwordencoder;
+	
+
+
+	
 	//get all data
 	public List<User> getAllUsers(){
 
@@ -27,20 +32,29 @@ public class UserService
 	}
 
 	//update data
-	public void updateuser(User user,Integer id)
+	public User updateuser(User user,Integer id)
     {
-	User user1=	this.userrepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("user not found with id"+id));
-	user1.setEmail(user.getEmail());
-	user1.setName(user.getName());
-	user1.setPassword(passwordencoder.encode(user.getPassword()));
-	userrepository.save(user1);
+	  User user1=	this.userrepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("user not found with id"+id));
+	  user1.setEmail(user.getEmail());
+	  user1.setName(user.getName());
+	  user1.setPassword(passwordencoder.encode(user.getPassword()));
+	  return userrepository.save(user1);
 	}
 
 	//add data
 	public void adduser(User user)
 	{
-		userrepository.save(user);
+		 
+		try
+			{
+		       userrepository.save(user);
+			}catch(Exception e)
+		{
+				new ResourceNotFoundException("user already register");
+		}
+		
 	}
+		
 
 
 	//delete by id

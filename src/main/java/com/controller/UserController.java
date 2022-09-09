@@ -50,6 +50,7 @@ public ResponseEntity<?> getAlluser ()
 	{
 
 		userservice.updateuser(user,id);
+		
 		return new ResponseEntity<>(user,HttpStatus.OK);
 	}catch(ResourceNotFoundException e)
 	{
