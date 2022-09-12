@@ -7,15 +7,13 @@ import com.dto.UserDto;
 import com.entity.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer>
-{
-  User findByEmail(String email);
+public interface UserRepository extends JpaRepository<User, Integer> {
+	User findByEmail(String email);
 
-User save(UserDto userdto);
+	User save(UserDto userdto);
 
-void save(Integer id);
+	void save(Integer id);
 
-
-void deleteById(User user);
+	void deleteById(User user);
 
 }

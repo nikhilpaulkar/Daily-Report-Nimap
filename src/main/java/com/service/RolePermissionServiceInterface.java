@@ -16,6 +16,6 @@ public interface RolePermissionServiceInterface
 
 	void deleteRolePermission(RolePermissionRequest rolePermissionRequest);
 
-	
+	List<RolePermissionEntity> getpermissionbyuserid(int id);
 	
 }

@@ -19,4 +19,6 @@ public interface RolePermissionRepo extends JpaRepository<RolePermissionEntity ,
 	@Query(value="UPDATE role_permission p SET permission_id=:permission_id WHERE p.role_id=:role_id",nativeQuery = true)
 	void updateRolePermission(@Param ("role_id") Integer  role_id,@Param ("permission_id") Integer permission_id);
 
+ 
+
 }

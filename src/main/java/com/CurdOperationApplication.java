@@ -1,7 +1,9 @@
 package com;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
   @SpringBootApplication
   public class CurdOperationApplication
   {
@@ -9,6 +11,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 	{
     	SpringApplication.run(CurdOperationApplication.class, args);
 	}
-
+  
+	@Bean
+	public ModelMapper modelmapper()
+	{
+		return new ModelMapper();
+	}
  }
   

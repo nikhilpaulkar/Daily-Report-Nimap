@@ -13,9 +13,11 @@ import com.entity.RolePermissionId;
 import com.exception.ResourceNotFoundException;
 import com.payload.RolePermissionRequest;
 import com.repository.PermissionRepo;
+
 import com.repository.RolePermissionRepo;
 import com.repository.RoleRepository;
-
+import com.repository.UserRoleRepository;
+import com.service.RoleIdList;
 import com.service.RolePermissionServiceInterface;
 
 
@@ -30,7 +32,9 @@ public class RolePermissionServiceImpl implements RolePermissionServiceInterface
 	@Autowired
 	private PermissionRepo permissionRepo;
 	
+	@Autowired
 	
+	private UserRoleRepository userrolerepo;
 
 	// add data 
 	@Override
@@ -95,6 +99,17 @@ public class RolePermissionServiceImpl implements RolePermissionServiceInterface
 		RolePermissionId rolePermissionId=new RolePermissionId(roleEntity,permissionEntity);
 		rolePermissionEntity.setPk(rolePermissionId);
 		rolePermissionRepo.delete(rolePermissionEntity);
+	}
+
+
+	@Override
+	public List<RolePermissionEntity> getpermissionbyuserid(int id)
+	{
+	
+		return null;
+	 
+		
+		
 	}
 
 
