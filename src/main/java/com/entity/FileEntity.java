@@ -1,5 +1,6 @@
 package com.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -18,24 +19,30 @@ import org.hibernate.annotations.Where;
 @Where(clause="isactive=true")
 @SQLDelete(sql="UPDATE file SET isactive=false WHERE id=?")
 
-public class FileEntity 
+public class FileEntity implements Serializable
+
 {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
   private int id;
   private String filename;
-  private String filetype;
+  private String type;
   private long size;
   private String mimetype;
   @CreationTimestamp
   private Date createdat;
   @UpdateTimestamp
   private Date updatedat;
-  private boolean isactive=true;
-
+  private String encoding;
+  private String originalname;
+ 
 	public int getId()
 	{
 		return id;
@@ -56,15 +63,15 @@ public class FileEntity
 		this.filename = filename;
 	}
 
-	public String getFiletype() 
+	public String gettype() 
 	
 	{
-		return filetype;
+		return type;
 	}
 
-	public void setFiletype(String filetype) 
+	public void setype(String type) 
 	{
-		this.filetype = filetype;
+		this.type = type;
 	}
 
 	public long getSize() {
@@ -104,29 +111,47 @@ public class FileEntity
 		this.updatedat = updatedat;
 		
 	}
-	
 
-	public boolean isIsactive() {
-		return isactive;
+		public String getType() {
+		return type;
 	}
 
-	public void setIsactive(boolean isactive) {
-		this.isactive = isactive;
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getEncoding() {
+		return encoding;
+	}
+
+	public void setEncoding(String encoding) {
+		this.encoding = encoding;
+	}
+
+	public String getOriginalname() {
+		return originalname;
+	}
+
+	public void setOriginalname(String originalname) {
+		this.originalname = originalname;
 	}
 
 	
 
-	public FileEntity(int id, String filename, String filetype, long size, String mimetype, Date createdat,
-			Date updatedat, boolean isactive) {
+	
+	public FileEntity(int id, String filename, String type, long size, String mimetype, Date createdat, Date updatedat,
+			String encoding, String originalname) {
 		super();
 		this.id = id;
 		this.filename = filename;
-		this.filetype = filetype;
+		this.type = type;
 		this.size = size;
 		this.mimetype = mimetype;
 		this.createdat = createdat;
 		this.updatedat = updatedat;
-		this.isactive = isactive;
+		this.encoding = encoding;
+		this.originalname = originalname;
+		
 	}
 
 	public FileEntity()

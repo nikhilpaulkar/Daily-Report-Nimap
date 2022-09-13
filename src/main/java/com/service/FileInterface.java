@@ -1,15 +1,20 @@
 package com.service;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
-import com.dto.FileDto;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.entity.FileEntity;
 
 public interface FileInterface 
 {
-	
-  FileDto addfile(FileDto filedto);
-	
-  List<FileDto>getallfiles();
+	public FileEntity storeFile(MultipartFile file, String type, HttpServletRequest request);
+
+	public static String getFolderName(String type) {
+		
+		return null;
+	}
+
+ 
 	
 }

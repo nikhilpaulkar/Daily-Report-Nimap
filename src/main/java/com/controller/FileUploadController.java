@@ -1,5 +1,9 @@
 package com.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,14 +11,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ServiceImpl.FileServiceImpl;
-
+import com.dto.ErrorResponseDto;
 import com.dto.FileDto;
+import com.dto.SuccessResponseDto;
+import com.entity.FileEntity;
+import com.entity.UploadFileResponse;
 import com.exception.ResourceNotFoundException;
 import com.repository.FileUploadRepository;
+import com.service.FileInterface;
 
 
 @RestController
@@ -27,38 +37,27 @@ public class FileUploadController
 	private FileUploadRepository filerepo;
  
 	@PostMapping
-	public ResponseEntity<?> addfile(@RequestBody FileDto filedto)
+	public ResponseEntity<?> addfile(@RequestParam("file") MultipartFile file,@RequestParam(defaultValue = "") String type, HttpServletRequest request)
+			
 	{
-		try
-		{
-		   FileDto filedto1=this.filerepo.findbyfilename(filedto.getFilename());
-		   if(filedto1!=null)
-		   {
-				return new  ResponseEntity<> ("user already exit",HttpStatus.NOT_ACCEPTABLE);
-			}
-		   else
-		   {
-			   fileserviceimpl.addfile(filedto1);
-		   }
-		}catch(ResourceAccessException e)
-		{
-			return new ResponseEntity<>("abc",HttpStatus.OK);
+		FileEntity fileDetail = new FileEntity();
+
+		try {
+
+			//fileDetail = FileInterface.storeFile(file, FileInterface.getFolderName(type), request);
+
+		} catch (ResourceNotFoundException e) {
+
+			return new ResponseEntity<>(new ErrorResponseDto(e.getMessage(), "invalidUploadType"), HttpStatus.BAD_REQUEST);
+
 		}
-	  return null;
+
+		return new ResponseEntity<>(new SuccessResponseDto("File Uploaded Successfully", "fileUploadSuccessfully", new UploadFileResponse(fileDetail.getId(), fileDetail.getFilename(), type)), HttpStatus.CREATED);
+
 	}
 	
-	@GetMapping
-	public ResponseEntity<?> getallfiles(@RequestBody FileDto filedto)
-	{
-		try
-		{
-	       fileserviceimpl.getallfiles();
-		}catch(ResourceNotFoundException e)
-		{
-			return new ResponseEntity<>("bad request",HttpStatus.BAD_REQUEST);
-		}
-		return null;
+		
 		
 	}
 	
-}
+
