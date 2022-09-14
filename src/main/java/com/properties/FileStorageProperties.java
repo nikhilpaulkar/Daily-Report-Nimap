@@ -1,6 +1,8 @@
 package com.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+
 @ConfigurationProperties(prefix = "file")
 public class FileStorageProperties 
 {
@@ -17,5 +19,10 @@ public class FileStorageProperties
 			this.uploadDir = uploadDir;
 
 		}
+
+	public FileStorageProperties() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 }
