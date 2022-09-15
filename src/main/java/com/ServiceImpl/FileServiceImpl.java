@@ -24,27 +24,25 @@ import com.properties.FileStorageProperties;
 import com.repository.FileUploadRepository;
 import com.service.FileInterface;
 
-
 @Service
 public class FileServiceImpl implements FileInterface {
 
 	private final Path fileStorageLocation;
 
 	@Autowired
-   
+
 	public FileServiceImpl(FileStorageProperties fileStorageProperties) {
-    
+
 		this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir()).toAbsolutePath().normalize();
 
-		try 
-		{
+		try {
 
 			Files.createDirectories(this.fileStorageLocation);
 
-		} catch (Exception ex) 
-		{
+		} catch (Exception ex) {
 
-			throw new ResourceNotFoundException("Could not create the directory where the uploaded files will be stored.");
+			throw new ResourceNotFoundException(
+					"Could not create the directory where the uploaded files will be stored.");
 
 		}
 
@@ -59,12 +57,10 @@ public class FileServiceImpl implements FileInterface {
 		// Normalize file name
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
-		try 
-		{
+		try {
 
 			// Check if the file's name contains invalid characters
-			if (fileName.contains("..")) 
-			{
+			if (fileName.contains("..")) {
 
 				throw new ResourceNotFoundException("Sorry! Filename contains invalid path sequence " + fileName);
 
@@ -72,8 +68,7 @@ public class FileServiceImpl implements FileInterface {
 
 			File pathAsFile = new File(this.fileStorageLocation + "/" + type);
 
-			if (!Files.exists(Paths.get(this.fileStorageLocation + "/" + type))) 
-			{
+			if (!Files.exists(Paths.get(this.fileStorageLocation + "/" + type))) {
 
 				pathAsFile.mkdir();
 
@@ -89,12 +84,11 @@ public class FileServiceImpl implements FileInterface {
 			newFile.setMimetype(file.getContentType());
 			newFile.setOriginalname(fileName);
 			newFile.setSize(file.getSize());
-			
+
 			FileEntity fileDetail = fileUploadRepository.save(newFile);
 			return fileDetail;
 
-		} catch (IOException ex)
-		{
+		} catch (IOException ex) {
 
 			throw new ResourceNotFoundException("Could not store file " + fileName + ". Please try again!");
 
@@ -103,29 +97,24 @@ public class FileServiceImpl implements FileInterface {
 	}
 
 	@Override
-	public javax.annotation.Resource loadFileAsResource(String fileName) throws ResourceNotFoundException 
-	{
+	public Resource loadFileAsResource(String fileName) throws ResourceNotFoundException {
 
-		try 
-		{
+		try {
 
 			Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
 			Resource resource = new UrlResource(filePath.toUri());
 
 			if (resource.exists()) {
 
-				return (javax.annotation.Resource) resource;
+				return resource;
 
-			} 
-			else 
-			{
+			} else {
 
 				throw new ResourceNotFoundException("File not found ");
 
 			}
 
-		} catch (Exception ex) 
-		{
+		} catch (Exception ex) {
 
 			throw new ResourceNotFoundException("File not found");
 
@@ -134,8 +123,7 @@ public class FileServiceImpl implements FileInterface {
 	}
 
 	@Override
-	public String getFolderName(String type) throws ResourceNotFoundException 
-	{
+	public String getFolderName(String type) throws ResourceNotFoundException {
 
 		String folderPath = "";
 

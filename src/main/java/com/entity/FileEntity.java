@@ -16,8 +16,7 @@ import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name="file")
-@Where(clause="isactive=true")
-@SQLDelete(sql="UPDATE file SET isactive=false WHERE id=?")
+
 
 public class FileEntity implements Serializable
 
