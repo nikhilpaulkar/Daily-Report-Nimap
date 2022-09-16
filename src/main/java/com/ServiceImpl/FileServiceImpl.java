@@ -60,7 +60,8 @@ public class FileServiceImpl implements FileInterface {
 		try {
 
 			// Check if the file's name contains invalid characters
-			if (fileName.contains("..")) {
+			if (fileName.contains("..")) 
+			{
 
 				throw new ResourceNotFoundException("Sorry! Filename contains invalid path sequence " + fileName);
 
@@ -68,10 +69,11 @@ public class FileServiceImpl implements FileInterface {
 
 			File pathAsFile = new File(this.fileStorageLocation + "/" + type);
 
-			if (!Files.exists(Paths.get(this.fileStorageLocation + "/" + type))) {
+			if (!Files.exists(Paths.get(this.fileStorageLocation + "/" + type))) 
+			{
 
 				pathAsFile.mkdir();
-
+            
 			}
 
 			// Copy file to the target location (Replacing existing file with the same name)
@@ -88,7 +90,8 @@ public class FileServiceImpl implements FileInterface {
 			FileEntity fileDetail = fileUploadRepository.save(newFile);
 			return fileDetail;
 
-		} catch (IOException ex) {
+		} catch (IOException ex) 
+		{
 
 			throw new ResourceNotFoundException("Could not store file " + fileName + ". Please try again!");
 
@@ -99,22 +102,26 @@ public class FileServiceImpl implements FileInterface {
 	@Override
 	public Resource loadFileAsResource(String fileName) throws ResourceNotFoundException {
 
-		try {
+		try 
+		{
 
 			Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
 			Resource resource = new UrlResource(filePath.toUri());
 
-			if (resource.exists()) {
+			if (resource.exists()) 
+			{
 
 				return resource;
 
-			} else {
+			} else 
+			{
 
 				throw new ResourceNotFoundException("File not found ");
 
 			}
 
-		} catch (Exception ex) {
+		} catch (Exception ex) 
+		{
 
 			throw new ResourceNotFoundException("File not found");
 
@@ -123,7 +130,8 @@ public class FileServiceImpl implements FileInterface {
 	}
 
 	@Override
-	public String getFolderName(String type) throws ResourceNotFoundException {
+	public String getFolderName(String type) throws ResourceNotFoundException 
+	{
 
 		String folderPath = "";
 

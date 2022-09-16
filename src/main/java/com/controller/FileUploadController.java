@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,19 +37,26 @@ public class FileUploadController
 			
 	{
 		FileEntity fileDetail = new FileEntity();
-
+      if(file.getOriginalFilename().endsWith("pdf")&&type.endsWith("pdf"))
+      {
 		try 
 		{
-
+			
+			
 			fileDetail = fileinterface.storeFile(file,type, request);
-
-		} catch (ResourceNotFoundException e) 
+			
+			
+		} catch (ResourceNotFoundException e)
+		
 		{
 
 			return new ResponseEntity<>(new ErrorResponseDto(e.getMessage(), "invalidUploadType"), HttpStatus.BAD_REQUEST);
-
 		}
-
+		}
+		else
+		{
+			return new ResponseEntity<>("only pdf file is allowed",HttpStatus.BAD_REQUEST);
+		}
 		return new ResponseEntity<>(new SuccessResponseDto("File Uploaded Successfully", "fileUploadSuccessfully", new UploadFileResponse(fileDetail.getId(), fileDetail.getFilename(), type)), HttpStatus.CREATED);
 
 	   }
@@ -94,7 +102,23 @@ public class FileUploadController
 	     
 	   }
 
-
+	  @PostMapping("excel")
+	  public String excelRead(@RequestParam("file") MultipartFile file,@RequestParam(defaultValue = "") String type, HttpServletRequest request) 
+	  {
+		String contentType= file.getContentType();
+		try 
+		{
+			
+			
+			
+		} catch (Exception e) 
+		{
+			
+			
+		}
+		
+		return "success";
+	}
 
 }		
 	
