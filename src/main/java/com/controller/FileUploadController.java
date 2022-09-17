@@ -69,7 +69,7 @@ public class FileUploadController
 		
 		Resource resource = null;
 
-		// Load file as Resource
+		
 		try 
 		{
 

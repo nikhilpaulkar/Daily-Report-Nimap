@@ -4,20 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.entity.ApiLoggerEntity;
-import com.repository.ApiLoggerRepository;
-import com.service.ApiLoggerServiceInterface;
+import com.repository.ApiLoggerRepo;
+import com.service.ApiLoggerServiceInterfaace;
 
 @Service
-public class ApiLoggerServiceImpl implements ApiLoggerServiceInterface
+public class ApiLoggerServiceImpl implements ApiLoggerServiceInterfaace
 {
-
 	@Autowired
-	ApiLoggerRepository apiLoggerRepository;
+	private ApiLoggerRepo apiLoggerRepo;
 	@Override
-	public void createApiLog(ApiLoggerEntity api) 
+	public void createApiLog(ApiLoggerEntity apiLoggerEntity)
 	{
-		apiLoggerRepository.save(api);
-		
+		apiLoggerRepo.save(apiLoggerEntity);
 	}
-
+	public ApiLoggerServiceImpl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 }

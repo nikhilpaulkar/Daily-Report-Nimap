@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.entity.ExcelEntity;
-import com.excel.ExcelHelper;
 import com.service.ExcelInterface;
 
 @RestController
@@ -21,24 +19,28 @@ public class ExcelController
 	private ExcelInterface excelinterface;
 	
 	 @PostMapping()
-	  public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file,String type) 
-	 {
+	  public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) 
+	  {
 	  
-           ExcelEntity excelentity=new ExcelEntity();
-           if(file.getOriginalFilename().endsWith("xlsx")&&type.endsWith("xlsx"))
+		
+		if (Helper.hasExcelFormat(file))
+		{
+		try
+		{
+				    	
+	    excelinterface.save(file);
+				    
+		return new ResponseEntity<>("Successfully Uploaded",HttpStatus.OK);
+		} catch (Exception e) 
 	    {
-	      try 
-	      {
-	         excelentity= excelinterface.save(file, type);
+				       
+		return new ResponseEntity<>("Could not upload the file..",HttpStatus.BAD_REQUEST);
+	   }
+ }
 
-	       return new ResponseEntity<>("file upload successfully!!",HttpStatus.ACCEPTED);
-	      } catch (Exception e)
-	      {
-	        
-	        return new  ResponseEntity<>("only excel file upload !!",HttpStatus.NOT_ACCEPTABLE);
-	      }
-	    }
-		return null;
+	return new ResponseEntity<>("Please upload an excel file..",HttpStatus.NOT_ACCEPTABLE);
+
+			}
 
 	 }
 	
@@ -47,4 +49,4 @@ public class ExcelController
 	
 	
 
-}
+

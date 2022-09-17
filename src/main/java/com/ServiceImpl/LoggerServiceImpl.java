@@ -32,7 +32,9 @@ public class LoggerServiceImpl implements LoggerServiceInterface
 	@Override
 	public LoggerEntity getLoggerDetail(String requestTokenHeader) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		LoggerEntity l=loggerrepository.findByToken(requestTokenHeader);
+		return l;
 	}
 	
 

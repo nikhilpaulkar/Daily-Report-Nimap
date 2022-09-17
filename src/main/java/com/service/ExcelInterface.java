@@ -9,7 +9,8 @@ import com.entity.ExcelEntity;
 public interface ExcelInterface 
 {
 
-	ExcelEntity save(MultipartFile file,String type);
+	ExcelEntity save(MultipartFile file);
 
+	
 	
 }

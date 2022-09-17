@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.entity.ApiLoggerEntity;
 
 @Repository
-public interface ApiLoggerRepository extends JpaRepository<ApiLoggerEntity,Long> {
+public interface ApiLoggerRepo extends JpaRepository<ApiLoggerEntity, Integer>
+{
 
 }

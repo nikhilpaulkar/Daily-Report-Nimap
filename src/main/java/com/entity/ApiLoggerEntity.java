@@ -1,63 +1,29 @@
 package com.entity;
-
 import java.io.Serializable;
 import java.util.Date;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 @Entity
-@Table(name = "api_logger")
-public class ApiLoggerEntity implements Serializable
-
-{
-
+@Table(name="logger_entity")
+public class ApiLoggerEntity implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
 	@Id
+	@GeneratedValue
+	private int id;
 	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String userToken;
-    private String ipAddress;
-    private String url;
-
-
-	private String method;
-
 	
-	private String host;
-
+	private String token;
 	
-	private String body;
-
-	@CreationTimestamp
-	private Date createdAt;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getUserToken() {
-		return userToken;
-	}
-
-	public void setUserToken(String userToken) {
-		this.userToken = userToken;
-	}
-
 	public String getIpAddress() {
 		return ipAddress;
 	}
@@ -66,28 +32,33 @@ public class ApiLoggerEntity implements Serializable
 		this.ipAddress = ipAddress;
 	}
 
-	public String getUrl() {
-		return url;
-	}
+	
+	@CreationTimestamp
+	private Date createdAt;
+	
+	
+	private String method;
+	
+	
+	private String url;
+	
+	
+	private String host;
+	
+	
+	private String body;
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getMethod() {
-		return method;
-	}
-
-	public void setMethod(String method) {
+	public ApiLoggerEntity(int id, String token, Date createdAt, String method, String url, String host, String body,
+			String ipAddress) {
+		super();
+		this.id = id;
+		this.token = token;
+		this.createdAt = createdAt;
 		this.method = method;
-	}
-
-	public String getHost() {
-		return host;
-	}
-
-	public void setHost(String host) {
+		this.url = url;
 		this.host = host;
+		this.body = body;
+		this.ipAddress = ipAddress;
 	}
 
 	public String getBody() {
@@ -98,6 +69,40 @@ public class ApiLoggerEntity implements Serializable
 		this.body = body;
 	}
 
+	
+	private String ipAddress;
+	
+
+
+	public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	public ApiLoggerEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -106,25 +111,20 @@ public class ApiLoggerEntity implements Serializable
 		this.createdAt = createdAt;
 	}
 
-	public ApiLoggerEntity(Long id, String userToken, String ipAddress, String url, String method, String host,
-			String body, Date createdAt) {
-		super();
-		this.id = id;
-		this.userToken = userToken;
-		this.ipAddress = ipAddress;
-		this.url = url;
-		this.method = method;
-		this.host = host;
-		this.body = body;
-		this.createdAt = createdAt;
+	public String getMethod() {
+		return method;
 	}
 
-	public ApiLoggerEntity() {
-		super();
-		// TODO Auto-generated constructor stub
+	public void setMethod(String method) {
+		this.method = method;
 	}
-	
-	
-	
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	
 }
