@@ -3,6 +3,8 @@ package com.ServiceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,7 +20,8 @@ public class ExcelServiceImpl implements ExcelInterface
 {
    @Autowired
    private  ExcelRepository excelrepository;
-
+   
+   // upload excel file 
    public ExcelEntity save(MultipartFile file)
    {
 	    try 
@@ -34,6 +37,15 @@ public class ExcelServiceImpl implements ExcelInterface
 		return null;
 	  }
 
-
-
+   // download excel file 
+   public List<ExcelEntity> getAllTutorials() 
+   {
+	    return excelrepository.findAll();
+	 }
+   
+   
 }
+
+
+
+

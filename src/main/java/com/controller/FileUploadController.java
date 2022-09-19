@@ -102,24 +102,7 @@ public class FileUploadController
 	     
 	   }
 
-	  @PostMapping("excel")
-	  public String excelRead(@RequestParam("file") MultipartFile file,@RequestParam(defaultValue = "") String type, HttpServletRequest request) 
-	  {
-		String contentType= file.getContentType();
-		try 
-		{
-			
-			
-			
-		} catch (Exception e) 
-		{
-			
-			
-		}
-		
-		return "success";
-	}
-
+	  
 }		
 	
 	

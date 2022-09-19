@@ -18,8 +18,8 @@ public class Helper
 {
 
 	public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-	  static String[] HEADERs = { "Id", "Name", "Email", "Password" };
-	  static String SHEET = "Sheet1";
+	 public static String[] HEADER = { "Id", "Name", "Email", "Password" };
+	 public  static String SHEET = "Sheet1";
 
 	  public static boolean hasExcelFormat(MultipartFile file) 
 	  {
@@ -33,8 +33,9 @@ public class Helper
 
 	    return true;
 	  }
-
-	public static List<ExcelEntity> excelToTutorials(InputStream inputStream) {
+    // upload file 
+	public static List<ExcelEntity> excelToTutorials(InputStream inputStream) 
+	{
 	
 		
 		try 
@@ -71,7 +72,8 @@ public class Helper
 		        {
 		          Cell currentCell = cellsInRow.next();
 
-		          switch (cellIdx) {
+		          switch (cellIdx) 
+		          {
 		          
 
 		          case 0:
@@ -103,7 +105,7 @@ public class Helper
 
 		      return tutorials;
 		    } catch (Exception e)
-		{
+		   {
 		      throw new RuntimeException("fail to parse Excel file: " + e.getMessage());
 		    }
 		  }

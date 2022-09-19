@@ -11,12 +11,14 @@ import com.properties.FileStorageProperties;
 @SpringBootApplication()
 @EnableConfigurationProperties({ FileStorageProperties.class })
 public class CurdOperationApplication {
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		SpringApplication.run(CurdOperationApplication.class, args);
 	}
 
 	@Bean
-	public ModelMapper modelmapper() {
+	public ModelMapper modelmapper() 
+	{
 		return new ModelMapper();
 	}
 }
