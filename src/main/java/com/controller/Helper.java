@@ -18,8 +18,8 @@ public class Helper
 {
 
 	public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-	 public static String[] HEADER = { "Id", "Name", "Email", "Password" };
-	 public  static String SHEET = "Sheet1";
+	public static String[] HEADER = { "Id", "Name", "Email", "Password" };
+	public  static String SHEET = "Sheet1";
 
 	  public static boolean hasExcelFormat(MultipartFile file) 
 	  {
