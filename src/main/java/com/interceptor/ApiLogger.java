@@ -28,7 +28,7 @@ import com.entity.LoggerEntity;
 import com.exception.Errordetails;
 
 @Component
-public class ExcecutionInterceptor implements HandlerInterceptor
+public class ApiLogger implements HandlerInterceptor
 {
 	@Autowired
 	private LoggerServiceInterface loggerServiceInterface;
@@ -36,7 +36,7 @@ public class ExcecutionInterceptor implements HandlerInterceptor
 	@Autowired
 	private ApiLoggerServiceInterfaace apiLoggerServiceInterface;
 	
-	public ExcecutionInterceptor()
+	public ApiLogger()
 	{
 		super();
 		// TODO Auto-generated constructor stub
@@ -91,14 +91,13 @@ public class ExcecutionInterceptor implements HandlerInterceptor
 
 			this.apiLoggerServiceInterface.createApiLog(apiLoggerEntity);
 			return true;
-		}
+		 }
 		
 		
-	}
+	    }
 		else
-	{
-		System.out.println("check");
-
+	    {
+			
 		ApiLoggerEntity apiLoggerEntity=new ApiLoggerEntity();
 		apiLoggerEntity.setToken("");
 		apiLoggerEntity.setMethod(request.getMethod());

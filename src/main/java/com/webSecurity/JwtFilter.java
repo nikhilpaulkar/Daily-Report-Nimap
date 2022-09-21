@@ -34,7 +34,8 @@ public class JwtFilter extends OncePerRequestFilter
 		//get  token
 		final  String requestToken=request.getHeader("Authorization");
 		//Berer 47698njik
-		
+		MultiReadHttpServletRequest multiReadRequest = new MultiReadHttpServletRequest(request);
+
 		String email=null;
 		String token=null;
 		if(requestToken!=null && requestToken.startsWith("Bearer "))
@@ -74,7 +75,7 @@ public class JwtFilter extends OncePerRequestFilter
 				SecurityContextHolder.getContext().setAuthentication(usernamepasswordautheticationtoken);
 			}
 		}
-		filterChain.doFilter(request, response);
+		filterChain.doFilter(multiReadRequest, response);
 		{
 		}
 		}

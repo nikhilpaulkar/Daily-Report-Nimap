@@ -15,7 +15,7 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	}
 	
 	@Autowired
-	private ExcecutionInterceptor excecutionInterceptor;
+	private ApiLogger excecutionInterceptor;
 	
 
 

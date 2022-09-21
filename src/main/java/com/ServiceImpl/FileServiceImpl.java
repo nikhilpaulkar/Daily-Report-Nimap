@@ -34,7 +34,7 @@ public class FileServiceImpl implements FileInterface {
 	public FileServiceImpl(FileStorageProperties fileStorageProperties) {
 
 		this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir()).toAbsolutePath().normalize();
-
+            
 		try {
 
 			Files.createDirectories(this.fileStorageLocation);
